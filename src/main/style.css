@@ -1,0 +1,18 @@
+.boardStyle {
+  font-size: 16px;
+  height: 25em;
+  width: 25em;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  grid-gap: 0.125em;
+}
+
+.cellStyle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  height: 100%;
+  width: 100%;
+}
