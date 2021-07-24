@@ -1,8 +1,8 @@
-import React from 'react';
+import { Component } from 'react';
 import Title from './Title';
 import SelectDificult from './Form';
 
-class Start extends React.Component {
+class Start extends Component {
   constructor(props) {
     super(props);
     this.state = {

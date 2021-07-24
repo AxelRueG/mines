@@ -1,6 +1,6 @@
-import React from 'react';
+import { Component } from 'react';
 
-class SelectDificult extends React.Component {
+class SelectDificult extends Component {
   constructor(props) {
     super(props);
     this.state = {

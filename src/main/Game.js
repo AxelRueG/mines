@@ -1,41 +1,38 @@
-import React from 'react';
+import { Component } from 'react';
 import Board from './mine';
+import Cell from './Cell';
 import './style.css';
 
-const Cell = props => {
-  return (
-    <div
-      className="cellStyle"
-      style={
-        props.status
-          ? { backgroundColor: '#b1b1b1' }
-          : { backgroundColor: 'gray' }
-      }
-      onClick={() => {
-        console.log(props.position[0], props.position[1]);
-        props.update(props.position[0], props.position[1]);
-      }}
-    >
-      {props.status ? props.value : ''}
-    </div>
-  );
-};
-
-class Game extends React.Component {
+class Game extends Component {
   constructor(props) {
     super(props);
     this.tablero = new Board(props.size);
     this.state = {
-      gameStatus: true,
+      gameStatus: 1,
+      check: false,
     };
-    this.handleClick = this.handleClick.bind(this);
   }
+  toggleClick = (fil, col) => {
+    if (this.state.gameStatus === 1) {
+      if (this.state.check) {
+        this.handlePick(fil, col);
+      } else {
+        this.handleClick(fil, col);
+      }
+    }
+  };
 
-  handleClick(fil, col) {
-    // this.setState({ gameStatus: this.tablero.click(fil, col) });
+  handleClick = (fil, col) => {
     let status = this.tablero.click(fil, col);
     this.setState({ gameStatus: status });
-  }
+  };
+  handlePick = (fil, col) => {
+    this.tablero.picked(fil, col);
+    this.setState({ gameStatus: 1 });
+  };
+  handleCheck = () => {
+    this.setState(state => ({ check: !state.check }));
+  };
 
   render() {
     const filas = this.tablero.boardStatus.map((Fila, it1) =>
@@ -44,15 +41,24 @@ class Game extends React.Component {
           status={nodo}
           value={this.tablero.board[it1][it2]}
           position={[it1, it2]}
-          update={this.handleClick}
+          click={this.toggleClick}
           key={`${it1}-${it2}`}
         />
       ))
     );
-    // this.tablero.plotMatrix();
     return (
-      <div className="boardStyle">
-        {this.state.gameStatus ? filas : 'Game Over'}
+      <div className="game">
+        <div className="game-board">{filas}</div>
+        {this.state.gameStatus !== 1
+          ? this.state.gameStatus === 0
+            ? 'Game Over'
+            : 'You Win'
+          : `mines ${this.tablero.cantMines}`}
+        <input
+          type="checkbox"
+          onChange={this.handleCheck}
+          checked={this.state.check}
+        />
       </div>
     );
   }

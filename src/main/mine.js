@@ -4,12 +4,17 @@ class Board {
     this.percentage = 0.2;
     this.cantMines = 0;
     this.board = [];
+    // Cells status
+    // [return 0] hide
+    // [return 1] view
+    // [return 2] picked mine
+    // [return 3] lose -> show mines
     this.boardStatus = [];
     this.settle();
     this.colonize();
   }
 
-  // constructor method
+  // constructor auxiliar methods
   settle() {
     for (let i = 0; i < this.cant; i++) {
       let vec = [];
@@ -47,13 +52,19 @@ class Board {
       }
     }
   }
-  // interactions
   click(fil, col) {
-    if (this.board[fil][col] === 9) return false;
-    if (this.boardStatus[fil][col] === 1) return true;
+    // interactions
+    // [return 0] lose
+    // [return 1] contunue
+    // [return 2] win
+    if (this.board[fil][col] === 9) {
+      this.loseStatus();
+      return 0;
+    }
+    if (this.boardStatus[fil][col] !== 0) return 1;
 
     this.propagation(fil, col);
-    return true;
+    return this.checkWin();
   }
 
   propagation(fil, col) {
@@ -76,14 +87,44 @@ class Board {
     }
   }
 
-  // auxiliar
-  plotMatrix() {
-    for (let i = 0; i < this.cant; i++) {
-      console.log(this.boardStatus[i]);
+  picked(fil, col) {
+    // if status is <view> you can't picket
+    if (this.boardStatus[fil][col] === 1) return;
+
+    // change state
+    if (this.boardStatus[fil][col] === 0) {
+      this.boardStatus[fil][col] = 2;
+    } else {
+      this.boardStatus[fil][col] = 0;
     }
-    console.log('minas');
+  }
+
+  checkWin() {
+    let cellPick = 0,
+      cellView = 0;
+
     for (let i = 0; i < this.cant; i++) {
-      console.log(this.board[i]);
+      for (let j = 0; j < this.cant; j++) {
+        if (this.boardStatus[i][j] === 2 && this.board[i][j] === 9) {
+          cellPick++;
+        }
+        if (this.boardStatus[i][j] === 1) {
+          cellView++;
+        }
+      }
+    }
+    let cant2 = this.cant * this.cant;
+    if (cellPick === this.cantMines || cellView === cant2 - this.cantMines) {
+      return 2;
+    }
+    return 1;
+  }
+
+  loseStatus() {
+    for (let i = 0; i < this.cant; i++) {
+      for (let j = 0; j < this.cant; j++) {
+        if (this.board[i][j] === 9) this.boardStatus[i][j] = 4;
+      }
     }
   }
 }
