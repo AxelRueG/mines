@@ -27,8 +27,8 @@ class Game extends Component {
     this.setState({ gameStatus: status });
   };
   handlePick = (fil, col) => {
-    this.tablero.picked(fil, col);
-    this.setState({ gameStatus: 1 });
+    let status = this.tablero.picked(fil, col);
+    this.setState({ gameStatus: status });
   };
   handleCheck = () => {
     this.setState(state => ({ check: !state.check }));
@@ -48,17 +48,24 @@ class Game extends Component {
     );
     return (
       <div className="game">
+        {this.state.gameStatus !== 1 ? (
+          this.state.gameStatus === 0 ? (
+            <h2 className="game-status">Game Over</h2>
+          ) : (
+            <h2 className="game-status">You Win</h2>
+          )
+        ) : (
+          <h3 className="game-status">{`total mines: ${this.tablero.cantMines}`}</h3>
+        )}
         <div className="game-board">{filas}</div>
-        {this.state.gameStatus !== 1
-          ? this.state.gameStatus === 0
-            ? 'Game Over'
-            : 'You Win'
-          : `mines ${this.tablero.cantMines}`}
-        <input
-          type="checkbox"
-          onChange={this.handleCheck}
-          checked={this.state.check}
-        />
+        <label className="game-check">
+          <input
+            type="checkbox"
+            onChange={this.handleCheck}
+            checked={this.state.check}
+          />{' '}
+          Flag
+        </label>
       </div>
     );
   }

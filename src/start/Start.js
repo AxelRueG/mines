@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import Title from './Title';
 import SelectDificult from './Form';
 
 class Start extends Component {
@@ -18,7 +17,6 @@ class Start extends Component {
   render() {
     return (
       <div>
-        <Title />
         <SelectDificult handleForm={this.handleSelection} />
       </div>
     );

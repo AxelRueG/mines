@@ -97,6 +97,7 @@ class Board {
     } else {
       this.boardStatus[fil][col] = 0;
     }
+    return this.checkWin();
   }
 
   checkWin() {
