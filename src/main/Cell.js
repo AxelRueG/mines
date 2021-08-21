@@ -20,7 +20,7 @@ const Cell = props => {
         props.click(props.position[0], props.position[1]);
       }}
     >
-      {props.status === 1 ? props.value : props.status === 2 ? 'X' : ''}
+      <p>{props.status === 1 ? props.value : props.status === 2 ? 'X' : ''}</p>
     </div>
   );
 };

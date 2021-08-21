@@ -1,5 +1,4 @@
 import { Component } from 'react';
-
 import './App.css';
 import Title from './start/Title';
 import Start from './start/Start';
@@ -15,13 +14,9 @@ class App extends Component {
   }
 
   handleSelection = value => {
-    console.log(value);
     this.setState({ sizeBoard: value, layout: 1 });
   };
 
-  // handleRestart = () => {
-  //   this.setState({ layout: 1 });
-  // };
   handleGotoHome = () => {
     this.setState({ layout: 0 });
   };
@@ -33,14 +28,11 @@ class App extends Component {
         {this.state.layout ? (
           <Game
             size={this.state.sizeBoard}
-            // handleRestart={this.handleRestart}
             handleGotoHome={this.handleGotoHome}
           />
         ) : (
           <Start handleSelection={this.handleSelection} />
         )}
-
-        {/*  */}
       </div>
     );
   }
