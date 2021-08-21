@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import Board from './mine';
 import Cell from './Cell';
+import StatusAndCount from './StatusAndCount';
 import './style.css';
 
 class Game extends Component {
@@ -26,12 +27,18 @@ class Game extends Component {
     let status = this.tablero.click(fil, col);
     this.setState({ gameStatus: status });
   };
+
   handlePick = (fil, col) => {
     let status = this.tablero.picked(fil, col);
     this.setState({ gameStatus: status });
   };
+
   handleCheck = () => {
     this.setState(state => ({ check: !state.check }));
+  };
+
+  handleRestart = () => {
+    console.log('new game');
   };
 
   render() {
@@ -48,16 +55,14 @@ class Game extends Component {
     );
     return (
       <div className="game">
-        {this.state.gameStatus !== 1 ? (
-          this.state.gameStatus === 0 ? (
-            <h2 className="game-status">Game Over</h2>
-          ) : (
-            <h2 className="game-status">You Win</h2>
-          )
-        ) : (
-          <h3 className="game-status">{`total mines: ${this.tablero.cantMines}`}</h3>
-        )}
+        {/* Game Status */}
+        <StatusAndCount
+          gameStatus={this.state.gameStatus}
+          cantMines={this.tablero.cantMines}
+        />
+        {/* Board */}
         <div className="game-board">{filas}</div>
+        {/* flags */}
         <label className="game-check">
           <input
             type="checkbox"
@@ -66,6 +71,8 @@ class Game extends Component {
           />{' '}
           Flag
         </label>
+        <button onClick={this.handleRestart}>New Game</button>
+        <button onClick={this.props.handleGotoHome}>Home</button>
       </div>
     );
   }

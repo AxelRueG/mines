@@ -53,6 +53,7 @@ class Board {
     }
   }
   click(fil, col) {
+    if (this.boardStatus[fil][col] !== 0) return 1;
     // interactions
     // [return 0] lose
     // [return 1] contunue
@@ -61,7 +62,6 @@ class Board {
       this.loseStatus();
       return 0;
     }
-    if (this.boardStatus[fil][col] !== 0) return 1;
 
     this.propagation(fil, col);
     return this.checkWin();
@@ -114,10 +114,15 @@ class Board {
         }
       }
     }
-    let cant2 = this.cant * this.cant;
+    let cant2 = this.cant * this.cant; // cantidad de celdas
+
+    // compruebo que todas las celdas no minas esten vistas
+    // o que todas las minas esten con bandera
     if (cellPick === this.cantMines || cellView === cant2 - this.cantMines) {
+      // hemos ganado
       return 2;
     }
+    // continuamos el juego
     return 1;
   }
 

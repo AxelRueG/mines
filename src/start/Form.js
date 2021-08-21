@@ -4,10 +4,8 @@ class SelectDificult extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: '1',
+      selected: '10',
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleSelected = this.handleSelected.bind(this);
   }
 
   handleSubmit = event => {
@@ -23,11 +21,11 @@ class SelectDificult extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <select onChange={this.handleSelected}>
-          <option value="1" defaultValue>
+          <option value="10" defaultValue>
             10x10
           </option>
-          <option value="2">30x30</option>
-          <option value="3">50x50</option>
+          <option value="15">15x15</option>
+          <option value="20">20x20</option>
         </select>
         <input type="submit" value="Play" />
       </form>

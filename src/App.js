@@ -1,16 +1,49 @@
+import { Component } from 'react';
+
 import './App.css';
-// import Start from './start/Start';
 import Title from './start/Title';
+import Start from './start/Start';
 import Game from './main/Game';
 
-function App() {
-  return (
-    <div className="App">
-      <Title />
-      {/* <Start /> */}
-      <Game size={10} />
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      layout: 0,
+      sizeBoard: null,
+    };
+  }
+
+  handleSelection = value => {
+    console.log(value);
+    this.setState({ sizeBoard: value, layout: 1 });
+  };
+
+  // handleRestart = () => {
+  //   this.setState({ layout: 1 });
+  // };
+  handleGotoHome = () => {
+    this.setState({ layout: 0 });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <Title />
+        {this.state.layout ? (
+          <Game
+            size={this.state.sizeBoard}
+            // handleRestart={this.handleRestart}
+            handleGotoHome={this.handleGotoHome}
+          />
+        ) : (
+          <Start handleSelection={this.handleSelection} />
+        )}
+
+        {/*  */}
+      </div>
+    );
+  }
 }
 
 export default App;
