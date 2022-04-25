@@ -49,7 +49,7 @@
 .show-cell{
   background-color: #afafaf;  
 }
-.flag-cell{
+.mine-cell{
   background-color: rgb(185, 34, 34);
 }
 .hidden-cell{
@@ -76,4 +76,11 @@
 .game-button {
   width: 6.25em;
   height: 1.875em;
+}
+
+.game-over {
+  color: red;
+}
+.game-win {
+  color: green;
 }

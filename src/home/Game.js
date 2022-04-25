@@ -44,13 +44,14 @@ const Game = ({ size }) => {
         cantMines={gameBoard.cantMines}
       />
       <div className={
-        gameStatus === 'gameover'
-        ? `game-board game-board-${size} game-board-over`
-        : `game-board game-board-${size}`
+        gameStatus === 'continue'
+        ? `game-board game-board-${size}`
+        : `game-board game-board-${size} game-board-over`
       }>{
         gameBoard.board.map((Row, m) =>
           Row.map((box, n) => (
             <Cell
+              gameStatus={gameStatus}
               box={box}
               position={[m, n]}
               click={handleClick}

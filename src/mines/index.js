@@ -52,6 +52,7 @@ class MinesGame {
       
   click(m, n) {
     // if the box is show, do nothing
+    if (this.board[m][n].status === 'flag') return 'continue'
     if (this.board[m][n].status === 'show') return 'continue'
     // if the box is a mine, game over
     if (this.board[m][n].val === -1){

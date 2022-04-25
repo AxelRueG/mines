@@ -7,9 +7,9 @@ const StatusAndCount = ({gameStatus, cantMines}) => {
       <h3 className="game-status">{`total mines: ${cantMines}`}</h3>
       ) : (
       gameStatus === 'gameover' ? (
-        <h2 className="game-status">Game Over</h2>
+        <h2 className="game-status game-over">Game Over</h2>
       ) : (
-        <h2 className="game-status">You Win</h2>
+        <h2 className="game-status game-win">You Win</h2>
       )
     )
   )
