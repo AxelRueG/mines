@@ -8,7 +8,7 @@ const Start = ({ handleSelection }) => {
   const handleSubmit = event => {
     event.preventDefault();
     handleSelection(selected);
-    start('/game')
+    start('/mines/game')
   };
 
   const handleSelected = event => {

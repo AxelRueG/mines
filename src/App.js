@@ -10,19 +10,21 @@ const App = () => {
   const [sizeBoard, setSizeBoard] = useState(10)
   const handleSelection = (value) => setSizeBoard(value)
   
+  console.log(document.URL)
+
   return (
     <div className="App">
       <Title />
       <Router>
         <Routes>
-          <Route path='/home' element={
+          <Route path='/mines/home' element={
             <Start handleSelection={handleSelection} />
           } />
-          <Route path='/game' element={
+          <Route path='/mines/game' element={
             <Game size={sizeBoard} />
           } /> 
           <Route path='/' element={
-            <Navigate to="/home" />
+            <Navigate to="/mines/home" />
           } />
           <Route path='/*' element={
             <h2>ERROR 404 NOT FOUND</h2>
