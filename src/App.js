@@ -15,14 +15,14 @@ const App = () => {
       <Title />
       <Router>
         <Routes>
-          <Route path='/home' element={
+          <Route path='/mines/home' element={
             <Start handleSelection={handleSelection} />
           } />
-          <Route path='/game' element={
+          <Route path='/mines/game' element={
             <Game size={sizeBoard} />
           } />
-          <Route path='/' element={
-            <Navigate to="/home" />
+          <Route path='/mines' element={
+            <Navigate to="/mines/home" />
           } />
           <Route path='/*' element={
             <h2>ERROR 404 NOT FOUND</h2>
