@@ -1,6 +1,6 @@
 {
-  "homepage":"https://axelrueg.github.io/mines",
   "name": "busca-minas",
+  "homepage":"https://axelrueg.github.io/mines/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
