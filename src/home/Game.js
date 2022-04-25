@@ -5,8 +5,8 @@ import StatusAndCount from './StatusAndCount';
 import GameOptions from './GameOptions';
 import './style.css';
 
-const Game = (props) => {
-  const [tablero, setTablero] = useState(new MineGame(props.size))
+const Game = ({ size }) => {
+  const [gameBoard, setGameBoard] = useState(new MineGame(size))
   const [gameStatus, setGameStatus] = useState('continue')
   const [check, setCheck ] = useState(false)
   const [countMoves, setCountMoves] = useState(0)
@@ -19,10 +19,10 @@ const Game = (props) => {
     if (gameStatus !== 'continue') return
 
     if (check) {
-      const status = tablero.redflag(fil,col)
+      const status = gameBoard.redflag(fil,col)
       setGameStatus(status)
     } else {
-      const status = tablero.click(fil,col)
+      const status = gameBoard.click(fil,col)
       setGameStatus(status)
     }
 
@@ -30,30 +30,25 @@ const Game = (props) => {
     console.log('click')
   };
 
-  const handleCheck = () => {
-    setCheck(!check)
-  };
+  const handleCheck = () => setCheck(!check)
 
   const handleRestart = () => {
-    setTablero(new MineGame(props.size))
+    setGameBoard(new MineGame(size))
     setGameStatus('continue')
   };
 
-  
   return (
     <div className="game">
-      {/* Game Status */}
       <StatusAndCount
         gameStatus={gameStatus}
-        cantMines={tablero.cantMines}
+        cantMines={gameBoard.cantMines}
       />
-      {/* MineGame */}
       <div className={
         gameStatus === 'gameover'
-        ? `game-board game-board-${props.size} game-board-over`
-        : `game-board game-board-${props.size}`
+        ? `game-board game-board-${size} game-board-over`
+        : `game-board game-board-${size}`
       }>{
-        tablero.board.map((Row, m) =>
+        gameBoard.board.map((Row, m) =>
           Row.map((box, n) => (
             <Cell
               box={box}
@@ -63,11 +58,9 @@ const Game = (props) => {
             />
         )))
       }</div>
-      {/* flags */}
       <GameOptions
         handleCheck={handleCheck}
         handleRestart={handleRestart}
-        handleGotoHome={props.handleGotoHome}
         check={check}
       />
     </div>

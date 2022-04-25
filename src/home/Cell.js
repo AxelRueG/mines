@@ -1,5 +1,6 @@
 import './style.css';
 
+// @TODO agregar estilos y iconos a la celda
 const colorCell = status => {
   switch (status) {
     case 'show':

@@ -1,4 +1,12 @@
-const GameOptions = ({handleCheck, check, handleRestart, handleGotoHome}) => {
+import { useNavigate } from 'react-router-dom'
+
+const GameOptions = ({handleCheck, check, handleRestart}) => {
+  const goHome = useNavigate()
+
+  const handleGotoHome = () => {
+    goHome('/home')
+  }
+  
   return (
     <div className="options-container">
       <label className="game-check">
