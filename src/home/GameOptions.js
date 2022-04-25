@@ -1,18 +1,18 @@
-const GameOptions = props => {
+const GameOptions = ({handleCheck, check, handleRestart, handleGotoHome}) => {
   return (
     <div className="options-container">
       <label className="game-check">
         <input
           type="checkbox"
-          onChange={props.handleCheck}
-          checked={props.check}
+          onChange={handleCheck}
+          checked={check}
         />{' '}
         Flag
       </label>
-      <button className="game-button" onClick={props.handleRestart}>
+      <button className="game-button" onClick={handleRestart}>
         New Game
       </button>
-      <button className="game-button" onClick={props.handleGotoHome}>
+      <button className="game-button" onClick={handleGotoHome}>
         Home
       </button>
     </div>

@@ -1,41 +1,37 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import './App.css';
 import Title from './start/Title';
-import Start from './start/Start';
-import Game from './main/Game';
+// import Start from './start/Start';
+import Game from './home/Game';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      layout: 0,
-      sizeBoard: null,
-    };
+const App = () => {
+  
+  const [sizeBoard, setSizeBoard] = useState(10)
+  
+  const handleSize = (e) => {
+    const size = e.target.value
+    console.log(size)
+    setSizeBoard(size)
   }
 
-  handleSelection = value => {
-    this.setState({ sizeBoard: value, layout: 1 });
-  };
-
-  handleGotoHome = () => {
-    this.setState({ layout: 0 });
-  };
-
-  render() {
-    return (
-      <div className="App">
-        <Title />
-        {this.state.layout ? (
-          <Game
-            size={this.state.sizeBoard}
-            handleGotoHome={this.handleGotoHome}
-          />
-        ) : (
-          <Start handleSelection={this.handleSelection} />
-        )}
-      </div>
-    );
+  const handleGotoHome = () => {
+    console.log('HOME')
   }
+  
+  return (
+    <div className="App">
+      <Title />
+      <Game
+        size={sizeBoard}
+        handleGotoHome={handleGotoHome}
+        handleSize={handleSize}
+      />
+      {/* {this.state.layout ? (
+      ) : (
+        <Start handleSelection={this.handleSelection} />
+      )} */}
+    </div>
+  );
 }
 
 export default App;
