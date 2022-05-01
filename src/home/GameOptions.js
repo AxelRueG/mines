@@ -4,7 +4,7 @@ const GameOptions = ({handleCheck, check, handleRestart}) => {
   const goHome = useNavigate()
 
   const handleGotoHome = () => {
-    goHome('/mines/home')
+    goHome('/home')
   }
   
   return (

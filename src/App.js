@@ -17,14 +17,14 @@ const App = () => {
       <Title />
       <Router basename={`/${process.env.PUBLIC_URL}`}>
         <Routes>
-          <Route path='/mines/home' element={
+          <Route path='/home' element={
             <Start handleSelection={handleSelection} />
           } />
-          <Route path='/mines/game' element={
+          <Route path='/game' element={
             <Game size={sizeBoard} />
           } /> 
           <Route path='/' element={
-            <Navigate to="/mines/home" />
+            <Navigate to="/home" />
           } />
           <Route path='/*' element={
             <h2>ERROR 404 NOT FOUND</h2>
