@@ -15,7 +15,7 @@ const App = () => {
   return (
     <div className="App">
       <Title />
-      <Router>
+      <Router basename={`/${process.env.PUBLIC_URL}`}>
         <Routes>
           <Route path='/mines/home' element={
             <Start handleSelection={handleSelection} />
