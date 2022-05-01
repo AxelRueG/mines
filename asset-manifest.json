@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/mines/static/css/main.c2a79655.css",
-    "main.js": "/mines/static/js/main.96465b3d.js",
+    "main.js": "/mines/static/js/main.cb778e0d.js",
     "index.html": "/mines/index.html",
     "main.c2a79655.css.map": "/mines/static/css/main.c2a79655.css.map",
-    "main.96465b3d.js.map": "/mines/static/js/main.96465b3d.js.map"
+    "main.cb778e0d.js.map": "/mines/static/js/main.cb778e0d.js.map"
   },
   "entrypoints": [
     "static/css/main.c2a79655.css",
-    "static/js/main.96465b3d.js"
+    "static/js/main.cb778e0d.js"
   ]
 }
