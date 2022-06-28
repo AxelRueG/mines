@@ -12,19 +12,19 @@
   height: 25em;
   width: 25em;
   display: grid;
-  grid-gap: 0.125em;
+  grid-gap: 1px;
 }
-.game-board-10 {
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(10, 1fr);
+.game-board-8 {
+  grid-template-columns: repeat(8, calc((25em - 7px) / 8));
+  grid-template-rows: repeat(8, calc((25em - 7px) / 8));
 }
-.game-board-15 {
-  grid-template-columns: repeat(15, 1fr);
-  grid-template-rows: repeat(15, 1fr);
+.game-board-16 {
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: repeat(16, 1fr);
 }
 .game-board-20 {
-  grid-template-columns: repeat(20, 1fr);
-  grid-template-rows: repeat(20, 1fr);
+  grid-template-columns: repeat(20, calc((25em - 19px) / 20));
+  grid-template-rows: repeat(20, calc((25em - 19px) / 20));
 }
 .game-board-over:after {
   content: '';

@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 
 const Start = ({ handleSelection }) => {
-  const [selected, setSelected] = useState(10)
+  const [selected, setSelected] = useState(8)
   const start = useNavigate()
 
   const handleSubmit = event => {

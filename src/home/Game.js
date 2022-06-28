@@ -41,7 +41,7 @@ const Game = ({ size }) => {
     <div className="game">
       <StatusAndCount
         gameStatus={gameStatus}
-        cantMines={gameBoard.cantMines}
+        cantMines={gameBoard.cantMines - gameBoard.cantFlags}
       />
       <div className={
         gameStatus === 'continue'
