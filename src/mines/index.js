@@ -3,7 +3,7 @@ class MinesGame {
     this.m = m;
     // board data
     this.total = m*m;
-    this.cantMines = 0;
+    this.cantMines = Math.ceil(0.15625*this.total);
     // status game data
     this.cantShowed = 0;
     this.discoveredMines = 0;
@@ -14,7 +14,7 @@ class MinesGame {
   }
 
   // fill the board
-  fill() {
+  fill = () => {
     for (let i = 0; i < this.m; i++) {
       let vec = [];
       for (let j = 0; j < this.m; j++)
@@ -24,21 +24,24 @@ class MinesGame {
   }
 
   // create mines and calcule boxes values
-  populate() {
-    for (let i = 0; i < this.m; i++) {
-      for (let j = 0; j < this.m; j++) {
-        // probability to was a mine
-        if (Math.random() < 0.2) {
-          this.board[i][j].val = -1;
-          this.cantMines++;
-          this.neighbours(i, j, this.addMineNeighbour);
-        } // if
-      } // for
-    } // for
+  populate = () => {
+    const genRandomIndex = () => Math.floor(Math.random()*this.m)
+
+    let cmines = 0
+    while (cmines<this.cantMines) {
+      const i = genRandomIndex()
+      const j = genRandomIndex()
+      // is a mine?
+      if (this.board[i][j].val !== -1) {
+        cmines++;
+        this.board[i][j].val = -1;
+        this.neighbours(i, j, this.addMineNeighbour);
+      } // if
+    } // while
   }
 
   // add in one the value of boxes neighbours of a mine
-  neighbours(x, y) {
+  neighbours = (x, y) => {
     // border check
     let i1 = x-1 < 0 ? 0 : x - 1;
     let j1 = y-1 < 0 ? 0 : y - 1;
@@ -50,7 +53,7 @@ class MinesGame {
         if (this.board[m][n].val >= 0) this.board[m][n].val++;
   }
       
-  click(m, n) {
+  click = (m, n) => {
     // if the box is show, do nothing
     if (this.board[m][n].status === 'flag') return 'continue'
     if (this.board[m][n].status === 'show') return 'continue'
@@ -68,7 +71,7 @@ class MinesGame {
     return this.checkWin();
   }
 
-  propagation(m, n) {
+  propagation = (m, n) => {
     // if already showed or with flag
     if (this.board[m][n].status === 'show' ||
       this.board[m][n].status === 'flag') {
@@ -97,8 +100,8 @@ class MinesGame {
 
   } // endfunction
 
-  redflag(m, n) {
-    if (this.board[m][n].status === 'show') return;
+  redflag = (m, n) => {
+    if (this.board[m][n].status === 'show') return 'continue';
 
     // game data update
     if (this.board[m][n].status === 'flag'){
@@ -109,14 +112,15 @@ class MinesGame {
       if (this.board[m][n].val === -1) this.discoveredMines++
     }
 
-    return this.checkWin();
+    return this.checkWin()
   }
 
-  checkWin() {
+  checkWin = () => {
     if (this.total-this.cantShowed === this.cantMines) return 'win'
     if (this.cantMines-this.discoveredMines === 0) return 'win'
     return 'continue'
   }
+
 }
 
 export default MinesGame;

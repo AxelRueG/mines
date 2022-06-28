@@ -7,7 +7,7 @@ import Game from './home/Game';
 import {BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom'
 
 const App = () => {
-  const [sizeBoard, setSizeBoard] = useState(10)
+  const [sizeBoard, setSizeBoard] = useState(8)
   const handleSelection = (value) => setSizeBoard(value)
   
   console.log(document.URL)
