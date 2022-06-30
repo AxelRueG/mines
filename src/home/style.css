@@ -19,8 +19,8 @@
   grid-template-rows: repeat(8, calc((25em - 7px) / 8));
 }
 .game-board-16 {
-  grid-template-columns: repeat(16, 1fr);
-  grid-template-rows: repeat(16, 1fr);
+  grid-template-columns: repeat(16, calc((25em - 15px) / 16));
+  grid-template-rows: repeat(16, calc((25em - 15px) / 16));
 }
 .game-board-20 {
   grid-template-columns: repeat(20, calc((25em - 19px) / 20));
